@@ -1,300 +1,544 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>मेरा ब्लॉग</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Modak&display=swap" rel="stylesheet">
     <style>
-        .prose {
-            max-width: none;
-        }
-        .prose h1 {
-            font-size: 2.75rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-            letter-spacing: -0.02em;
-        }
-        .prose h2 {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-            color: #4a5568;
-            letter-spacing: -0.02em;
-        }
-        .prose p {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-            color: #718096;
-        }
-        .prose strong {
-            color: #2d3748;
-            font-weight: 600;
-        }
-        .prose a {
-            color: #2b6cb0;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease, border-bottom 0.3s ease;
-            border-bottom: 2px solid transparent;
-        }
-        .prose a:hover {
-            color: #1a365d;
-            border-bottom: 2px solid #4299e1;
-        }
-        .prose img {
-            border-radius: 0.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 5px 8px -3px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        .prose ul {
-            list-style: disc;
-            padding-left: 2rem;
-            margin-bottom: 1.5rem;
-            color: #718096;
-        }
-        .prose ol {
-            list-style: decimal;
-            padding-left: 2rem;
-            margin-bottom: 1.5rem;
-            color: #718096;
-        }
-        .prose li::marker {
-            color: #4299e1;
-        }
-
-        /* Custom styles for the menu */
-        #menu-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 1rem;
-            background-color: #fff;
-            color: #4a5568;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-        }
-        #menu-button:hover {
-            background-color: #f7fafc;
-            color: #2d3748;
-            border-color: #cbd5e0;
-        }
-
-        #menu-options {
-            position: fixed; /* Changed to fixed */
-            top: 3.5rem;      /* Adjusted top position */
-            left: 1rem;     /* Keep left position */
-            background-color: #fff;
-            border-radius: 0.375rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            padding: 0.75rem;
-            display: none;
-            z-index: 10;
-            border: 1px solid #e2e8f0;
-            min-width: 120px; /* Added minimum width */
-        }
-
-        #menu-options.show {
-            display: block;
-        }
-
-        #menu-options ul {
-            list-style: none;
-            padding: 0;
+        /* Global Styles */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        #menu-options li {
-            padding: 0.5rem 0.75rem;
-            color: #4a5568;
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        /* Font Classes */
+        .modak-regular {
+          font-family: "Modak", system-ui;
+          font-weight: 400;
+          font-style: normal;
+          letter-spacing: 1px;
+        }
+
+        .kalam-light {
+          font-family: "Kalam", cursive;
+          font-weight: 300;
+          font-style: normal;
+        }
+
+        .kalam-regular {
+          font-family: "Kalam", cursive;
+          font-weight: 400;
+          font-style: normal;
+        }
+
+        .kalam-bold {
+          font-family: "Kalam", cursive;
+          font-weight: 700;
+          font-style: normal;
+        }
+
+        /* Layout Styles */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            float: left;
+            font-size: 2.5rem;
+            color: #f1c40f; /* Yellow color for Hindi title */
+        }
+
+        nav {
+            float: right;
+            padding-top: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f1c40f;
+        }
+
+        header::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 40px 0;
+            min-height: calc(100vh - 160px);
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        /* Blog List Styles */
+        .blog-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            height: 200px;
+            background-color: #3498db;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        .blog-content h2 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-family: "Modak", system-ui;
+            font-weight: 400;
+            font-size: 1.5rem;
+        }
+
+        .blog-content p {
+            color: #666;
+            margin-bottom: 15px;
+            font-family: "Kalam", cursive;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-family: "Kalam", cursive;
+        }
+
+        /* Form Styles */
+        .auth-form, .blog-form, .blog-management {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .auth-form h2, .blog-form h2, .blog-management h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease;
-            border-radius: 0.375rem;
-            white-space: nowrap; /* Prevent text wrapping */
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
-        #menu-options li:hover {
-            background-color: #f7fafc;
-            color: #2d3748;
+        button:hover {
+            background-color: #2980b9;
         }
 
-        #menu-options hr {
-            margin: 0.5rem 0;
-            border: 0;
-            border-top: 1px solid #e2e8f0;
+        .auth-message {
+            margin-top: 10px;
+            text-align: center;
+            color: #e74c3c;
         }
 
+        /* Blog Management Styles */
+        .manage-blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .manage-blog-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        .manage-blog-item h3 {
+            flex-grow: 1;
+            margin-right: 15px;
+            font-family: "Kalam", cursive;
+            font-weight: 400;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-family: "Kalam", cursive;
+            font-weight: 700;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header h1, nav {
+                float: none;
+                text-align: center;
+            }
+
+            header h1 {
+                margin-bottom: 15px;
+                font-size: 2rem;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .blog-list {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-100 font-inter">
-    <header class="bg-white shadow-md py-6">
-        <div class="container mx-auto px-4 flex items-center justify-between">
-            <h1 class="text-4xl font-bold text-gray-800">Minimalist Blog</h1>
-             <div class="relative">
-                <button id="menu-button" aria-label="Menu">
-                    Menu
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down ml-2"><path d="m7 10 5 5 5-5"></path></svg>
-                </button>
-                <div id="menu-options" class="hidden">
-                    <ul>
-                        <li id="add-blog-option">Add Blog</li>
-                        <hr>
-                        <li id="delete-blog-option">Delete Blog</li>
-                    </ul>
-                </div>
-            </div>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="modak-regular">मेरा ब्लॉग</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" id="home-link" class="kalam-bold">होम</a></li>
+                    <li><a href="#" id="add-blog-link" class="kalam-bold">ब्लॉग जोड़ें</a></li>
+                    <li><a href="#" id="manage-blog-link" class="kalam-bold">ब्लॉग प्रबंधित करें</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-10">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10" id="blog-container">
-            <article class="bg-white rounded-lg shadow-lg p-8 mb-10 transition-transform hover:shadow-xl hover:scale-[1.01]">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-4">Embracing Minimalism in a Digital Age</h2>
-                <p class="text-gray-500 text-lg mb-3">Published: January 1, 2024</p>
-                <div class="prose prose-lg mt-6">
-                    <p>
-                        In an era of information overload and constant digital stimulation, the concept of minimalism has gained significant traction.  It's a philosophy that emphasizes simplicity, clarity, and intentionality.
-                    </p>
-                    <p>
-                        Digital minimalism is about being more intentional with the technology we use. It's about curating our digital world to include only the tools and platforms that truly serve us.
-                    </p>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">The Benefits of Digital Minimalism</h3>
-                    <ul class="list-disc list-inside mb-6">
-                        <li><strong>Reduced Stress and Anxiety:</strong> Constant notifications and endless scrolling can contribute to stress.</li>
-                        <li><strong>Improved Focus and Productivity:</strong> Eliminating distractions improves focus.</li>
-                        <li><strong>More Time for What Matters:</strong> Digital minimalism frees up time for meaningful activities.</li>
-                        <li><strong>Increased Presence and Mindfulness:</strong>  Being less connected allows for more presence.</li>
-                        <li><strong>Better Sleep:</strong> Reducing screen time improves sleep quality.</li>
-                    </ul>
-                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Tips for Embracing Digital Minimalism</h3>
-                    <ol class="list-decimal list-inside mb-6">
-                        <li><strong>Conduct a Digital Declutter:</strong> Eliminate unnecessary apps and subscriptions.</li>
-                        <li><strong>Set Boundaries:</strong> Establish clear boundaries around technology use.</li>
-                        <li><strong>Practice Intentional Usage:</strong>  Be mindful of why you are using a device.</li>
-                        <li><strong>Cultivate Offline Hobbies:</strong> Engage in activities that don't involve screens.</li>
-                        <li><strong>Prioritize Real-World Connections:</strong>  Connect with people face-to-face.</li>
-                    </ol>
-                    <img src="https://placehold.co/800x400/E5E7EB/6B7280" alt="Digital Minimalism" class="w-full rounded-md shadow-lg">
-                    <p>
-                        Embracing digital minimalism is a journey, not a destination.  It requires ongoing self-reflection and a willingness to make conscious choices about how we use technology.
-                    </p>
-                </div>
-            </article>
+    <main class="container">
+        <section id="home-section">
+            <div class="blog-list" id="blog-list">
+                <!-- Blogs will be loaded here -->
+            </div>
+        </section>
 
-            <article class="bg-white rounded-lg shadow-lg p-8 mb-10 transition-transform hover:shadow-xl hover:scale-[1.01]">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-4">The Art of Mindful Technology Use</h2>
-                <p class="text-gray-500 text-lg mb-3">Published: January 28, 2024</p>
-                <div class="prose prose-lg mt-6">
-                     <p>
-                        Building on digital minimalism, this post explores mindful technology use.
-                     </p>
-                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Understanding Mindful Technology Use</h3>
-                     <p>
-                        Mindful technology use involves cultivating awareness of our thoughts, feelings, and behaviors in relation to technology.
-                     </p>
-                     <ul class="list-disc list-inside mb-6">
-                        <li>How am I feeling right now?</li>
-                        <li>What am I hoping to achieve by using this technology?</li>
-                        <li>Is this technology serving my values and goals?</li>
-                        <li>How will I feel after using this technology?</li>
-                     </ul>
+        <section id="add-blog-section" style="display: none;">
+            <div class="auth-form">
+                <h2 class="modak-regular">प्रमाणीकरण आवश्यक</h2>
+                <input type="password" id="add-auth-password" placeholder="पासवर्ड दर्ज करें" class="kalam-regular">
+                <button id="add-auth-btn" class="kalam-bold">प्रमाणित करें</button>
+                <p id="add-auth-message" class="auth-message kalam-regular"></p>
+            </div>
 
-                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Techniques for Mindful Technology Use</h3>
-                     <ol class="list-decimal list-inside mb-6">
-                        <li><strong>Pause Before You Connect:</strong> Take a moment to pause and reflect before using your device.</li>
-                        <li><strong>Set Intentions:</strong> Before using an app or website, set a clear intention.</li>
-                        <li><strong>Practice Mindful Scrolling:</strong>  Pay attention to your feelings while scrolling.</li>
-                        <li><strong>Create Tech-Free Zones:</strong> Designate tech-free areas in your home.</li>
-                        <li><strong>Schedule Regular Tech Breaks:</strong>  Take breaks from technology throughout the day.</li>
-                     </ol>
-                     <img src="https://placehold.co/800x400/CBD5E0/718096" alt="Mindful Technology" class="w-full rounded-md shadow-lg">
-                     <p>
-                        Mindful technology use can help us regain control over our digital lives and use technology as a tool, rather than allowing it to control us.
-                     </p>
+            <div class="blog-form" id="blog-form" style="display: none;">
+                <h2 class="modak-regular">नया ब्लॉग जोड़ें</h2>
+                <form id="new-blog-form">
+                    <input type="text" id="blog-title" placeholder="ब्लॉग शीर्षक" required class="kalam-regular">
+                    <textarea id="blog-content" placeholder="ब्लॉग सामग्री" required class="kalam-regular"></textarea>
+                    <input type="text" id="blog-author" placeholder="लेखक का नाम" required class="kalam-regular">
+                    <button type="submit" class="kalam-bold">ब्लॉग प्रकाशित करें</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="manage-blog-section" style="display: none;">
+            <div class="auth-form">
+                <h2 class="modak-regular">प्रमाणीकरण आवश्यक</h2>
+                <input type="password" id="manage-auth-password" placeholder="पासवर्ड दर्ज करें" class="kalam-regular">
+                <button id="manage-auth-btn" class="kalam-bold">प्रमाणित करें</button>
+                <p id="manage-auth-message" class="auth-message kalam-regular"></p>
+            </div>
+
+            <div class="blog-management" id="blog-management" style="display: none;">
+                <h2 class="modak-regular">ब्लॉग प्रबंधित करें</h2>
+                <div class="manage-blog-list" id="manage-blog-list">
+                    <!-- Blogs to manage will be loaded here -->
                 </div>
-            </article>
-        </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-gray-200 text-gray-700 py-6 mt-10 rounded-t-lg">
-        <div class="container mx-auto px-4 text-center">
-            &copy; 2024 Minimalist Blog. All rights reserved.
+    <footer>
+        <div class="container">
+            <p class="kalam-regular">&copy; 2023 मेरा ब्लॉग. सर्वाधिकार सुरक्षित.</p>
         </div>
     </footer>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuButton = document.getElementById('menu-button');
-        const menuOptions = document.getElementById('menu-options');
-        const addBlogOption = document.getElementById('add-blog-option');
-        const deleteBlogOption = document.getElementById('delete-blog-option');
-        const blogContainer = document.getElementById('blog-container');
-
-        menuButton.addEventListener('click', () => {
-            menuOptions.classList.toggle('show');
-        });
-
-        document.addEventListener('click', (event) => {
-            if (!menuOptions.contains(event.target) && event.target !== menuButton) {
-                menuOptions.classList.remove('show');
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const homeLink = document.getElementById('home-link');
+            const addBlogLink = document.getElementById('add-blog-link');
+            const manageBlogLink = document.getElementById('manage-blog-link');
+            
+            const homeSection = document.getElementById('home-section');
+            const addBlogSection = document.getElementById('add-blog-section');
+            const manageBlogSection = document.getElementById('manage-blog-section');
+            
+            const blogList = document.getElementById('blog-list');
+            const manageBlogList = document.getElementById('manage-blog-list');
+            
+            // Authentication elements
+            const addAuthBtn = document.getElementById('add-auth-btn');
+            const manageAuthBtn = document.getElementById('manage-auth-btn');
+            const addAuthPassword = document.getElementById('add-auth-password');
+            const manageAuthPassword = document.getElementById('manage-auth-password');
+            const addAuthMessage = document.getElementById('add-auth-message');
+            const manageAuthMessage = document.getElementById('manage-auth-message');
+            
+            const blogForm = document.getElementById('blog-form');
+            const blogManagement = document.getElementById('blog-management');
+            const newBlogForm = document.getElementById('new-blog-form');
+            
+            // Correct password (as requested)
+            const CORRECT_PASSWORD = '111@111';
+            
+            // Navigation functions
+            function showSection(section) {
+                homeSection.style.display = 'none';
+                addBlogSection.style.display = 'none';
+                manageBlogSection.style.display = 'none';
+                
+                section.style.display = 'block';
             }
-        });
-
-        addBlogOption.addEventListener('click', () => {
-            const password = prompt('Enter password to add a blog post:');
-            if (password === 'password') { // Replace 'password' with your actual password
-                const title = prompt('Enter the title of your new blog post:');
-                const content = prompt('Enter the content of your new blog post:');
-                if (title && content) {
-                    const newArticle = document.createElement('article');
-                    newArticle.className = 'bg-white rounded-lg shadow-lg p-8 mb-10 transition-transform hover:shadow-xl hover:scale-[1.01]';
-                    newArticle.innerHTML = `
-                        <h2 class="text-3xl font-semibold text-gray-800 mb-4">${title}</h2>
-                        <p class="text-gray-500 text-lg mb-3">Published: ${new Date().toLocaleDateString()}</p>
-                        <div class="prose prose-lg mt-6">
-                            <p>${content}</p>
+            
+            homeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showSection(homeSection);
+                loadBlogs();
+            });
+            
+            addBlogLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showSection(addBlogSection);
+                // Reset auth form
+                addAuthPassword.value = '';
+                addAuthMessage.textContent = '';
+                blogForm.style.display = 'none';
+            });
+            
+            manageBlogLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showSection(manageBlogSection);
+                // Reset auth form
+                manageAuthPassword.value = '';
+                manageAuthMessage.textContent = '';
+                blogManagement.style.display = 'none';
+            });
+            
+            // Authentication functions
+            addAuthBtn.addEventListener('click', function() {
+                if (addAuthPassword.value === CORRECT_PASSWORD) {
+                    blogForm.style.display = 'block';
+                    addAuthMessage.textContent = '';
+                } else {
+                    addAuthMessage.textContent = 'गलत पासवर्ड। कृपया पुनः प्रयास करें।';
+                }
+            });
+            
+            manageAuthBtn.addEventListener('click', function() {
+                if (manageAuthPassword.value === CORRECT_PASSWORD) {
+                    blogManagement.style.display = 'block';
+                    manageAuthMessage.textContent = '';
+                    loadManageBlogs();
+                } else {
+                    manageAuthMessage.textContent = 'गलत पासवर्ड। कृपया पुनः प्रयास करें।';
+                }
+            });
+            
+            // Blog functions
+            function loadBlogs() {
+                const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+                
+                blogList.innerHTML = '';
+                
+                if (blogs.length === 0) {
+                    blogList.innerHTML = '<p class="kalam-regular">अभी तक कोई ब्लॉग नहीं है। पहला ब्लॉग जोड़ें!</p>';
+                    return;
+                }
+                
+                blogs.forEach(blog => {
+                    const blogCard = document.createElement('div');
+                    blogCard.className = 'blog-card';
+                    
+                    const colors = ['#3498db', '#2ecc71', '#e74c3c', '#f39c12', '#9b59b6'];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    blogCard.innerHTML = `
+                        <div class="blog-image" style="background-color: ${randomColor};"></div>
+                        <div class="blog-content">
+                            <h2 class="modak-regular">${blog.title}</h2>
+                            <p class="kalam-regular">${blog.content.substring(0, 100)}${blog.content.length > 100 ? '...' : ''}</p>
+                            <div class="blog-meta kalam-regular">
+                                <span>${blog.author} द्वारा</span>
+                                <span>${new Date(blog.date).toLocaleDateString('hi-IN')}</span>
+                            </div>
                         </div>
                     `;
-                    blogContainer.appendChild(newArticle);
-                    menuOptions.classList.remove('show');
-                    alert('Blog post added successfully!');
-                } else {
-                    alert('Title and content are required.');
-                }
-            } else {
-                alert('Incorrect password.');
+                    
+                    blogList.appendChild(blogCard);
+                });
             }
-        });
-
-        deleteBlogOption.addEventListener('click', () => {
-            const password = prompt('Enter password to delete a blog post:');
-            if (password === 'password') { // Replace 'password' with your actual password
-                const articles = blogContainer.querySelectorAll('article');
-                if (articles.length > 0) {
-                    const indexToDelete = parseInt(prompt(`Enter the number of the blog post to delete (1-${articles.length}):`), 10);
-                    if (indexToDelete > 0 && indexToDelete <= articles.length) {
-                        blogContainer.removeChild(articles[indexToDelete - 1]);
-                        menuOptions.classList.remove('show');
-                        alert('Blog post deleted successfully!');
-                    } else {
-                        alert('Invalid blog post number.');
+            
+            function loadManageBlogs() {
+                const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+                
+                manageBlogList.innerHTML = '';
+                
+                if (blogs.length === 0) {
+                    manageBlogList.innerHTML = '<p class="kalam-regular">प्रबंधित करने के लिए कोई ब्लॉग नहीं है।</p>';
+                    return;
+                }
+                
+                blogs.forEach((blog, index) => {
+                    const blogItem = document.createElement('div');
+                    blogItem.className = 'manage-blog-item';
+                    
+                    blogItem.innerHTML = `
+                        <h3 class="kalam-regular">${blog.title}</h3>
+                        <button class="delete-btn kalam-bold" data-index="${index}">
+                            <i class="fas fa-trash"></i> हटाएं
+                        </button>
+                    `;
+                    
+                    manageBlogList.appendChild(blogItem);
+                });
+                
+                // Add event listeners to delete buttons
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        deleteBlog(index);
+                    });
+                });
+            }
+            
+            function deleteBlog(index) {
+                const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+                
+                if (index >= 0 && index < blogs.length) {
+                    if (confirm(`क्या आप वाकई "${blogs[index].title}" हटाना चाहते हैं?`)) {
+                        blogs.splice(index, 1);
+                        localStorage.setItem('blogs', JSON.stringify(blogs));
+                        loadManageBlogs();
+                        loadBlogs();
                     }
-                } else {
-                    alert('No blog posts to delete.');
                 }
-            } else {
-                alert('Incorrect password.');
             }
+            
+            newBlogForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const title = document.getElementById('blog-title').value;
+                const content = document.getElementById('blog-content').value;
+                const author = document.getElementById('blog-author').value;
+                
+                const newBlog = {
+                    title,
+                    content,
+                    author,
+                    date: new Date().toISOString()
+                };
+                
+                const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+                blogs.push(newBlog);
+                localStorage.setItem('blogs', JSON.stringify(blogs));
+                
+                this.reset();
+                
+                alert('ब्लॉग सफलतापूर्वक प्रकाशित हुआ!');
+                
+                loadBlogs();
+                showSection(homeSection);
+            });
+            
+            // Initialize the page
+            showSection(homeSection);
+            loadBlogs();
         });
-
-        if (typeof hljs !== 'undefined') {
-            hljs.highlightAll();
-        }
-    });
     </script>
 </body>
 </html>
