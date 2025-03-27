@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+        .prose {
+            max-width: none;
+        }
+        .prose h1 {
+            font-size: 2.75rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            letter-spacing: -0.02em;
+        }
+        .prose h2 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            color: #4a5568;
+            letter-spacing: -0.02em;
+        }
+        .prose p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #718096;
+        }
+        .prose strong {
+            color: #2d3748;
+            font-weight: 600;
+        }
+        .prose a {
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .prose a:hover {
+            color: #1a365d;
+            border-bottom: 2px solid #4299e1;
+        }
+        .prose img {
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 8px -3px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .prose ul {
+            list-style: disc;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: #718096;
+        }
+        .prose ol {
+            list-style: decimal;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: #718096;
+        }
+        .prose li::marker {
+            color: #4299e1;
+        }
+
+        /* Custom styles for the menu */
+        #menu-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            background-color: #fff;
+            color: #4a5568;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+        }
+        #menu-button:hover {
+            background-color: #f7fafc;
+            color: #2d3748;
+            border-color: #cbd5e0;
+        }
+
+        #menu-options {
+            position: fixed; /* Changed to fixed */
+            top: 3.5rem;      /* Adjusted top position */
+            left: 1rem;     /* Keep left position */
+            background-color: #fff;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 0.75rem;
+            display: none;
+            z-index: 10;
+            border: 1px solid #e2e8f0;
+            min-width: 120px; /* Added minimum width */
+        }
+
+        #menu-options.show {
+            display: block;
+        }
+
+        #menu-options ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #menu-options li {
+            padding: 0.5rem 0.75rem;
+            color: #4a5568;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            border-radius: 0.375rem;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        #menu-options li:hover {
+            background-color: #f7fafc;
+            color: #2d3748;
+        }
+
+        #menu-options hr {
+            margin: 0.5rem 0;
+            border: 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 font-inter">
+    <header class="bg-white shadow-md py-6">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <h1 class="text-4xl font-bold text-gray-800">Minimalist Blog</h1>
+             <div class="relative">
+                <button id="menu-button" aria-label="Menu">
+                    Menu
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down ml-2"><path d="m7 10 5 5 5-5"></path></svg>
+                </button>
+                <div id="menu-options" class="hidden">
+                    <ul>
+                        <li id="add-blog-option">Add Blog</li>
+                        <hr>
+                        <li id="delete-blog-option">Delete Blog</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10" id="blog-container">
+            <article class="bg-white rounded-lg shadow-lg p-8 mb-10 transition-transform hover:shadow-xl hover:scale-[1.01]">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-4">Embracing Minimalism in a Digital Age</h2>
+                <p class="text-gray-500 text-lg mb-3">Published: January 1, 2024</p>
+                <div class="prose prose-lg mt-6">
+                    <p>
+                        In an era of information overload and constant digital stimulation, the concept of minimalism has gained significant traction.  It's a philosophy that emphasizes simplicity, clarity, and intentionality.
+                    </p>
+                    <p>
+                        Digital minimalism is about being more intentional with the technology we use. It's about curating our digital world to include only the tools and platforms that truly serve us.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-4">The Benefits of Digital Minimalism</h3>
+                    <ul class="list-disc list-inside mb-6">
+                        <li><strong>Reduced Stress and Anxiety:</strong> Constant notifications and endless scrolling can contribute to stress.</li>
+                        <li><strong>Improved Focus and Productivity:</strong> Eliminating distractions improves focus.</li>
+                        <li><strong>More Time for What Matters:</strong> Digital minimalism frees up time for meaningful activities.</li>
+                        <li><strong>Increased Presence and Mindfulness:</strong>  Being less connected allows for more presence.</li>
+                        <li><strong>Better Sleep:</strong> Reducing screen time improves sleep quality.</li>
+                    </ul>
+                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Tips for Embracing Digital Minimalism</h3>
+                    <ol class="list-decimal list-inside mb-6">
+                        <li><strong>Conduct a Digital Declutter:</strong> Eliminate unnecessary apps and subscriptions.</li>
+                        <li><strong>Set Boundaries:</strong> Establish clear boundaries around technology use.</li>
+                        <li><strong>Practice Intentional Usage:</strong>  Be mindful of why you are using a device.</li>
+                        <li><strong>Cultivate Offline Hobbies:</strong> Engage in activities that don't involve screens.</li>
+                        <li><strong>Prioritize Real-World Connections:</strong>  Connect with people face-to-face.</li>
+                    </ol>
+                    <img src="https://placehold.co/800x400/E5E7EB/6B7280" alt="Digital Minimalism" class="w-full rounded-md shadow-lg">
+                    <p>
+                        Embracing digital minimalism is a journey, not a destination.  It requires ongoing self-reflection and a willingness to make conscious choices about how we use technology.
+                    </p>
+                </div>
+            </article>
+
+            <article class="bg-white rounded-lg shadow-lg p-8 mb-10 transition-transform hover:shadow-xl hover:scale-[1.01]">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-4">The Art of Mindful Technology Use</h2>
+                <p class="text-gray-500 text-lg mb-3">Published: January 28, 2024</p>
+                <div class="prose prose-lg mt-6">
+                     <p>
+                        Building on digital minimalism, this post explores mindful technology use.
+                     </p>
+                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Understanding Mindful Technology Use</h3>
+                     <p>
+                        Mindful technology use involves cultivating awareness of our thoughts, feelings, and behaviors in relation to technology.
+                     </p>
+                     <ul class="list-disc list-inside mb-6">
+                        <li>How am I feeling right now?</li>
+                        <li>What am I hoping to achieve by using this technology?</li>
+                        <li>Is this technology serving my values and goals?</li>
+                        <li>How will I feel after using this technology?</li>
+                     </ul>
+
+                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Techniques for Mindful Technology Use</h3>
+                     <ol class="list-decimal list-inside mb-6">
+                        <li><strong>Pause Before You Connect:</strong> Take a moment to pause and reflect before using your device.</li>
+                        <li><strong>Set Intentions:</strong> Before using an app or website, set a clear intention.</li>
+                        <li><strong>Practice Mindful Scrolling:</strong>  Pay attention to your feelings while scrolling.</li>
+                        <li><strong>Create Tech-Free Zones:</strong> Designate tech-free areas in your home.</li>
+                        <li><strong>Schedule Regular Tech Breaks:</strong>  Take breaks from technology throughout the day.</li>
+                     </ol>
+                     <img src="https://placehold.co/800x400/CBD5E0/718096" alt="Mindful Technology" class="w-full rounded-md shadow-lg">
+                     <p>
+                        Mindful technology use can help us regain control over our digital lives and use technology as a tool, rather than allowing it to control us.
+                     </p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="bg-gray-200 text-gray-700 py-6 mt-10 rounded-t-lg">
+        <div class="container mx-auto px-4 text-center">
+            &copy; 2024 Minimalist Blog. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuButton = document.getElementById('menu-button');
+        const menuOptions = document.getElementById('menu-options');
+        const addBlogOption = document.getElementById('add-blog-option');
+        const deleteBlogOption = document.getElementById('delete-blog-option');
+        const blogContainer = document.getElementById('blog-container');
+
+        menuButton.addEventListener('click', () => {
+            menuOptions.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!menuOptions.contains(event.target) && event.target !== menuButton) {
+                menuOptions.classList.remove('show');
+            }
+        });
+
+        addBlogOption.addEventListener('click', () => {
+            const password = prompt('Enter password to add a blog post:');
+            if (password === 'password') { // Replace 'password' with your actual password
+                const title = prompt('Enter the title of your new blog post:');
+                const content = prompt('Enter the content of your new blog post:');
+                if (title && content) {
+                    const newArticle = document.createElement('article');
+                    newArticle.className = 'bg-white rounded-lg shadow-lg p-8 mb-10 transition-transform hover:shadow-xl hover:scale-[1.01]';
+                    newArticle.innerHTML = `
+                        <h2 class="text-3xl font-semibold text-gray-800 mb-4">${title}</h2>
+                        <p class="text-gray-500 text-lg mb-3">Published: ${new Date().toLocaleDateString()}</p>
+                        <div class="prose prose-lg mt-6">
+                            <p>${content}</p>
+                        </div>
+                    `;
+                    blogContainer.appendChild(newArticle);
+                    menuOptions.classList.remove('show');
+                    alert('Blog post added successfully!');
+                } else {
+                    alert('Title and content are required.');
+                }
+            } else {
+                alert('Incorrect password.');
+            }
+        });
+
+        deleteBlogOption.addEventListener('click', () => {
+            const password = prompt('Enter password to delete a blog post:');
+            if (password === 'password') { // Replace 'password' with your actual password
+                const articles = blogContainer.querySelectorAll('article');
+                if (articles.length > 0) {
+                    const indexToDelete = parseInt(prompt(`Enter the number of the blog post to delete (1-${articles.length}):`), 10);
+                    if (indexToDelete > 0 && indexToDelete <= articles.length) {
+                        blogContainer.removeChild(articles[indexToDelete - 1]);
+                        menuOptions.classList.remove('show');
+                        alert('Blog post deleted successfully!');
+                    } else {
+                        alert('Invalid blog post number.');
+                    }
+                } else {
+                    alert('No blog posts to delete.');
+                }
+            } else {
+                alert('Incorrect password.');
+            }
+        });
+
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+    });
+    </script>
+</body>
+</html>
